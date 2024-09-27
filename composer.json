@@ -9,9 +9,15 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {},
     "autoload": {
         "classmap": ["classes"]
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.2"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     }
-
 }

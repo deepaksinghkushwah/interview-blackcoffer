@@ -1,0 +1,19 @@
+{
+    "name": "deepaksinghkushwah/blackcoffer",
+    "description": "Sample project for job application",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Deepak Singh Kushwah",
+            "email": "deepaksinghkushwah@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "classes\\":"classes"
+        }
+    }
+
+}

@@ -6,6 +6,9 @@ include('config.php');
 $link = DB::getInstance();
 $charts = [];
 
+/**
+ * get countries wise records and count
+ */
 $countries = [];
 $records = $link->query("SELECT count(*) as total, country FROM `coffer` where country != '' GROUP BY country HAVING total < 20");
 while ($res = $records->fetch_object()) {
@@ -30,6 +33,9 @@ unset($chart);
 unset($data);
 unset($countries);
 
+/**
+ * Get region wise data
+ */
 $regions = [];
 $records = $link->query("SELECT count(*) as total, region FROM `coffer` where region != '' GROUP BY region HAVING total < 20");
 while ($res = $records->fetch_object()) {
@@ -54,6 +60,9 @@ unset($chart);
 unset($data);
 unset($regions);
 
+/**
+ * Get city wise data
+ */
 $cities = [];
 $records = $link->query("SELECT count(*) as total, `city` FROM `coffer` where city != '' GROUP BY city");
 while ($res = $records->fetch_object()) {
@@ -78,7 +87,9 @@ unset($chart);
 unset($data);
 unset($cities);
 
-
+/**
+ * Get source wise data
+ */
 $sources = [];
 $records = $link->query("SELECT count(*) as total, `source` FROM `coffer` where `source` != '' GROUP BY `source`  limit 0,50");
 while ($res = $records->fetch_object()) {
@@ -100,7 +111,9 @@ unset($sources);
 
 
 
-// sector wise
+/**
+ * Get sector wise data
+ */
 $records = $link->query("SELECT COUNT(*) as `total`, `sector` FROM `coffer`  WHERE sector != '' GROUP BY `sector` ORDER BY `sector` ASC");
 while ($res = $records->fetch_object()) {
   $data[] = ['x' => ucwords($res->sector), 'y' => $res->total];
@@ -120,7 +133,9 @@ unset($chart);
 unset($data);
 
 
-// topic wise
+/**
+ * Get topic wise data
+ */
 $records = $link->query("SELECT COUNT(*) as `total`, `topic` FROM `coffer` WHERE topic != '' GROUP BY `topic` HAVING total > 10 ORDER BY `topic` ASC;");
 while ($res = $records->fetch_object()) {
   $data[] = ['x' => ucwords($res->topic), 'y' => $res->total];
@@ -149,16 +164,13 @@ $charts['items']['topics'] = $chart;
 unset($chart);
 unset($data);
 
-
-
-
-// overall
+/**
+ * Get intensity and relevance wise data
+ */
 $records = $link->query("SELECT SUM(relevance) as relevance, SUM(intensity) as intensity, topic FROM `coffer` WHERE topic !='' group by topic");
 $categories = [];
 $series = [];
 while ($res = $records->fetch_object()) {
-  // $relevance = $link->query("SELECT SUM(relevance) as relevance, SUM(intensity) as intensity FROM `coffer` WHERE `topic` = '" . $res->topic . "'");
-  // $object = $relevance->fetch_object();
    if ($res->intensity >= 10 || $res->relevance >= 10) {
     continue;
   } else {
@@ -192,10 +204,8 @@ $charts['items']['overall'] = $chart;
 unset($chart);
 unset($data);
 
-
-
-
-
-
+/**
+ * Output all data
+ */
 header('Content-Type: application/json');
 echo json_encode($charts);

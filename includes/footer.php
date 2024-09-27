@@ -45,10 +45,13 @@
 <script>
   $(document).ready(function() {
     $.ajax({
-      url: '/get-data.php',
+      url: '/get-chart-data.php',
       dataType: 'json',
       type: 'get',
       success: function(data) {
+        /**
+         * Code the dynamically render all charts in loop - removed
+         */
         // $.each(data.items, (index, chartOption) => {
         //   //console.log(chartOption);
         //   var div = $('<div></div>').attr('id', 'chart' + index);
@@ -56,7 +59,6 @@
         //   var newChart = new ApexCharts(document.querySelector("#chart" + index), chartOption)
         //   newChart.render();
         // });
-        //new ApexCharts(document.querySelector('#intensity'), data['items']['intensity']).render();
 
         new ApexCharts(document.querySelector("#sectors"), data['items']['sectors']).render();
         
@@ -69,7 +71,7 @@
         new ApexCharts(document.querySelector("#sources"), data['items']['sources']).render();
 
         new ApexCharts(document.querySelector("#regions"), data['items']['regions']).render();
-        
+
         new ApexCharts(document.querySelector("#cities"), data['items']['cities']).render();
         
       }

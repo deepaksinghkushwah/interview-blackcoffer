@@ -14,7 +14,6 @@ if ($handle) {
     if ($c == 1) {
       continue;
     }
-    //echo "<pre>";print_r($row);exit;
     for ($i = 0; $i < count($row); $i++) {
       $row[$i] = preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $link->real_escape_string($row[$i]));
     }
@@ -49,6 +48,3 @@ if ($handle) {
   }
 }
 echo "Data Imported";
-// //echo "<pre>";print_r($retArr);
-// header('Content-type: application/json');
-// echo json_encode($data, JSON_INVALID_UTF8_SUBSTITUTE);

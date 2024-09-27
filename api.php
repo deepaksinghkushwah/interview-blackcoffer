@@ -1,8 +1,8 @@
 <?php
-
 use classes\DB;
 
 include('config.php');
+
 header('Content-Type: application/json');
 $action = $_GET['action'] ?? 'get_records';
 switch ($action) {
@@ -18,8 +18,11 @@ $data = [
 
 echo json_encode($data);
 
-
-function getRecords()
+/**
+ * Get records from database
+ * @return array 
+ */
+function getRecords() : array
 {
   $retArr = [];
   $link = DB::getInstance();

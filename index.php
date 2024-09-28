@@ -1,4 +1,5 @@
 <?php
+$heroTitle = "Home / Analytics";
 include('./includes/header.php')
 ?>
 <div class="row">

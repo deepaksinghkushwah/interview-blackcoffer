@@ -23,6 +23,8 @@ include('./includes/header.php')
               
               <th>Region</th>
               <th>Start Year</th>
+              <th>Added</th>
+              <th>Published</th>
               <th>Impact</th>
               <th>City</th>
               <th>Country</th>
@@ -42,12 +44,12 @@ include('./includes/header.php')
                 <td><?= $row->end_year; ?></td>
                 <td><?= $row->intensity; ?></td>
                 <td><?= $row->sector; ?></td>
-                <td><?= $row->topic; ?></td>
-                
-                <td><?= $row->swot; ?></td>
-               
+                <td><?= $row->topic; ?></td>                
+                <td><?= $row->swot; ?></td>               
                 <td><?= $row->region; ?></td>
                 <td><?= $row->start_year; ?></td>
+                <td><?=date('F, d Y H:i:s', strtotime($row->added));?></td>
+                <td><?=date('F, d Y H:i:s', strtotime($row->published));?></td>
                 <td><?= $row->impact; ?></td>
                 <td><?= $row->city; ?></td>
                 <td><?= $row->country; ?></td>

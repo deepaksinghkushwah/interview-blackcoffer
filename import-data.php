@@ -31,8 +31,8 @@ if ($handle) {
       `region` = '" . $row[9] . "',
       `start_year` = '" . $row[10] . "',
       `impact` = '" . (int)$row[11] . "',
-      `added` = '" . date('Y-m-d H:i:s', strtotime($row[12])) . "',
-      `published` = '" . date('Y-m-d H:i:s', strtotime($row[13])) . "',
+      `added` = '" . DateTime::createFromFormat("F, d Y H:i:s", $row[12])->format('Y-m-d H:i:s') . "',
+      `published` = '" . DateTime::createFromFormat("F, d Y H:i:s", $row[13])->format('Y-m-d H:i:s') . "',
       `city` = '" . $row[14] . "',
       `country` = '" . $row[15] . "',
       `relevance` = '" . $row[16] . "',
@@ -41,6 +41,7 @@ if ($handle) {
       `title` = '" . $row[19] . "',
       `likelihood` = '" . $row[20] . "'";
       $link->query($sql);
+      //echo $sql."<hr>";
     } catch (Exception $e) {
       echo $sql . "<br>";
       echo $e->getMessage() . "<hr>";

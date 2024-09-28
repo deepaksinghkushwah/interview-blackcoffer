@@ -13,7 +13,7 @@ test('record fetch testing', function(){
   expect($data)->toBeArray();
 });
 
-test('record array length testing', function(){
+test('record single array length testing', function(){
   $data = Coffer::getRecords();
   expect($data[10])->toHaveLength(22);
 });
